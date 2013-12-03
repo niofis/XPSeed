@@ -26,11 +26,11 @@ exports.create=function(){
 				} else if(req.user.roles[action.permit]){
 					action.action(req,res,next);
 				} else {
-					res.status(401).send('Unauthorized');
+					functions.unauthorized(res);
 				}
 			}
 		} else {
-			res.status(404).send('Not found');
+			functions.notFound(res);
 		}
 	}
 
@@ -40,6 +40,28 @@ exports.create=function(){
 			_methods[m][action_name]={action:action, permit:permit};
 		});
 	}
+
+	functions.notFound = function (res,message){
+		var msg=message || 'Not found';
+		res.status(404).send(msg);
+	}
+
+	functions.unauthorized = function(res,message){
+		var msg = message || 'Unauthorized';
+		res.status(401).send(msg);
+	}
+
+	functions.serverError = function(res,message){
+		var msg = message || 'Server error';
+		res.status(500).send(msg);
+	}
+
+	functions.badRequest = function (res,message){
+		var msg = message || 'Bad request';
+		res.status(400).send(msg);
+	}
+
+
 
 	return functions;
 }
