@@ -14,7 +14,7 @@ exports.create=function(){
 
 	functions.controller = function(req,res,next){
 
-		var action=_methods[req.method.toUpperCase()][req.params.action || 'index'];
+		var action=_methods[req.method.toUpperCase()][(req.params.action || 'index').toUpperCase()];
 		if(action){
 			if(action.permit=='public'){
 				action.action(req,res,next);
