@@ -27,7 +27,7 @@ ctrl.map('GET','index',function (req,res,next){
 },'public');
 ```
 
-And to create a API controller, that requires an authenticated call with the 'user' role, responding to the '/' URI.
+And to create an API controller, that requires an authenticated call with the 'user' role, responding to the '/' URI.
 ```javascript
 var ctrl = require('../controller').create();
 exports.controller=ctrl.controller;
