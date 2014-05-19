@@ -1,7 +1,7 @@
 XPSeed
 ======
 
-A template for bootstraping node.js/express applications, containing the various libraries and a simple REST implementation.
+A template for bootstraping node.js/express applications, containing various libraries and a simple REST implementation.
 
 ###Characteristics
 **Libraries**
