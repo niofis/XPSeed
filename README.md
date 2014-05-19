@@ -37,8 +37,6 @@ ctrl.map('GET','index',function (req,res,next){
 },'user');
 ```
 
-Controller whose action name is index can be called either with or without the 'index' action name specified.
-
 Router are created in the 'routes.js' file, where you specify the action name and other parameters, either optional or required, and simply map them to the controller created previously.
 
 ```javascript
