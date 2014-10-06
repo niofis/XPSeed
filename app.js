@@ -4,6 +4,11 @@
  */
 
 var express = require('express');
+var favicon = require('serve-favicon');
+var morgan = require('morgan');
+var methodOverride = require('method-override');
+var bodyParser = require('body-parser');
+var errorhandler = require('errorhandler');
 var http = require('http');
 var path = require('path');
 var routes = require('./routes');
@@ -19,19 +24,19 @@ app.set('view engine', 'html');
 app.engine('html', function(path,options,fn){
     fn(null,bliss.render(path, options));
 });
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
+app.use(favicon(__dirname + '/public/favicon.png'));
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride());
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 routes.configure(app);
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+  app.use(errorhandler());
 }
 
 http.createServer(app).listen(app.get('port'), function(){
