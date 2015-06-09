@@ -9,6 +9,8 @@ var morgan = require('morgan');
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 var errorhandler = require('errorhandler');
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
 var http = require('http');
 var path = require('path');
 var routes = require('./routes');
@@ -24,6 +26,9 @@ app.set('view engine', 'html');
 app.engine('html', function(path,options,fn){
     fn(null,bliss.render(path, options));
 });
+app.use(cookieParser('FXqOIYZVcT1kptwNDi4b'));
+app.use(cookieSession({keys: ['']}));
+
 app.use(favicon(__dirname + '/public/favicon.png'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
